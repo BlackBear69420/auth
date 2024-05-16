@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { KeyboardAvoidingView, StyleSheet, Text, TouchableOpacity, View, ActivityIndicator, Platform, StatusBar } from 'react-native';
+import { KeyboardAvoidingView, StyleSheet, Text, TouchableOpacity, View, ActivityIndicator, Platform, StatusBar, ScrollView } from 'react-native';
 import { TextInput,Snackbar } from 'react-native-paper';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useNavigation } from '@react-navigation/native';
@@ -63,13 +63,13 @@ const Login = () => {
   };
 
   return (
-    <LinearGradient
+    <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
+        <LinearGradient
       colors={['#1338be', '#8235cf']}
       start={{ x: 0, y: 0 }}
       end={{ x: 1, y: 1 }}
       style={{ flex: 1 }}
     >
-      <KeyboardAvoidingView style={styles.container}>
         <StatusBar backgroundColor='#1338be' barStyle='light-content'></StatusBar>
         {loading ? (
           <ActivityIndicator size="large" color="white" />
@@ -102,7 +102,7 @@ const Login = () => {
               }),
             }}
           >
-            <View style={{ justifyContent: 'center', alignItems: 'center' }}>
+            <View style={{ justifyContent: 'center', alignItems: 'center',marginVertical:'10%' }}>
               <Text style={{ fontSize: 30, fontFamily: 'RobotoSlab-Black', color: 'black' }}>
                 Welcome back!
               </Text>
@@ -160,7 +160,6 @@ const Login = () => {
             </View>
           </View>
         )}
-      </KeyboardAvoidingView>
       <View style={styles.snackbarContainer}>
         <Snackbar
           visible={snackbarVisible}
@@ -171,6 +170,8 @@ const Login = () => {
         </Snackbar>
       </View>
     </LinearGradient>
+    </ScrollView>
+  
   );
 };
 
